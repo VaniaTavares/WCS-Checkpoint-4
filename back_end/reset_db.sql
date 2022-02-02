@@ -12,7 +12,6 @@ CREATE TABLE users(
     `created_at` DATETIME DEFAULT now(),
     `updated_at` DATETIME DEFAULT now() ON UPDATE now(),
     `last_access` DATETIME DEFAULT now(),
-`failed attempts` INT NOT NULL DEFAULT 0,
 `admin` BOOLEAN DEFAULT FALSE
 ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
 
