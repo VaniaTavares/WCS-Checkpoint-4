@@ -5,11 +5,13 @@ USE wishlist;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
+`username` VARCHAR(30) NOT NULL,
 `email` VARCHAR(80) UNIQUE NOT NULL,
 `hashed_password` VARCHAR(255) NOT NULL,
 `status` VARCHAR(40) DEFAULT "Active",
     `created_at` DATETIME DEFAULT now(),
-    `last_access` DATETIME DEFAULT now() ON UPDATE now(),
+    `updated_at` DATETIME DEFAULT now() ON UPDATE now(),
+    `last_access` DATETIME DEFAULT now(),
 `failed attempts` INT NOT NULL DEFAULT 0,
 `admin` BOOLEAN DEFAULT FALSE
 ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
@@ -54,3 +56,4 @@ CREATE TABLE users_restaurants (
     FOREIGN KEY (`restaurant_id`)
     REFERENCES `restaurants` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
+    
