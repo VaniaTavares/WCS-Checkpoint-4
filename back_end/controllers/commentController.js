@@ -32,7 +32,8 @@ const updateComment = async (req, res, next) => {
       req.params.commentId
     );
     if (!update) throw Error;
-    res.status(200).json(update);
+    const message = update.changedRows ? "Comment updated!" : "No update.";
+    res.status(200).json({ message });
   } catch (err) {
     next(err);
   }
@@ -41,8 +42,8 @@ const updateComment = async (req, res, next) => {
 const eraseComment = async (req, res, next) => {
   try {
     const deletion = await commentModel.deleteComment(req.params.commentId);
-    if (!deletion) throw Error;
-    res.status(200).json(deletion);
+    if (!deletion || !deletion.affectedRows) throw Error;
+    res.status(204).json({ message: "Record deleted" });
   } catch (err) {
     next(err);
   }

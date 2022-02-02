@@ -24,6 +24,10 @@ commentRouter.get("/", commentController.getRestaurantComments);
 
 commentRouter.post("/", commentController.addNewComment);
 
+commentRouter.patch("/:commentId", commentController.updateComment);
+
+commentRouter.delete("/:commentId", commentController.eraseComment);
+
 restaurantRouter.use("/:restaurantId/votes", voteRouter);
 
 voteRouter.get("/", voteController.getRestaurantVotes);

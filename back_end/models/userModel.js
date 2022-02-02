@@ -39,7 +39,7 @@ const updatePassword = async ({ password }, id) => {
     "UPDATE users SET hashed_password = ? WHERE id=?;",
     [hashed_password, id]
   );
-  return results.affectedRows;
+  return results;
 };
 
 module.exports = {

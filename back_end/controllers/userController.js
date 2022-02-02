@@ -19,7 +19,8 @@ const resetPassword = async (req, res, next) => {
     delete req.body.passwordConfirmation;
     const update = await userModel.updatePassword(req.body, req.params.id);
     if (!update) throw Error;
-    res.status(200).json({ message: "Password update successful." });
+    const message = update.changedRows ? "Password updated!" : "No update.";
+    res.status(200).json({ message });
   } catch (err) {
     next(err);
   }

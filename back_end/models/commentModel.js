@@ -19,10 +19,11 @@ const retriveComments = async (restaurant_id, admin = false) => {
   return results[0];
 };
 
-const updateComment = async ({ comment }, comment_id) => {
+const updateComment = async ({ comment }, commentId) => {
+  const comment_id = parseInt(commentId);
   let [results] = await connection.query(
     "UPDATE comments SET ? WHERE comment_id=?",
-    [comment, comment_id]
+    [{ comment }, comment_id]
   );
   return results;
 };
@@ -30,7 +31,7 @@ const updateComment = async ({ comment }, comment_id) => {
 const deleteComment = async (comment_id) => {
   let [results] = await connection.query(
     "DELETE FROM comments WHERE comment_id=?",
-    [comment, comment_id]
+    [comment_id]
   );
   return results;
 };
