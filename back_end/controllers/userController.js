@@ -16,6 +16,7 @@ const resetPassword = async (req, res, next) => {
   try {
     const results = await userModel.getUserById(req.params.id);
     if (!results) throw new Error("NO_RECORD_FOUND");
+    delete req.body.passwordConfirmation;
     const update = await userModel.updatePassword(req.body, req.params.id);
     if (!update) throw Error;
     res.status(200).json({ message: "Password update successful." });

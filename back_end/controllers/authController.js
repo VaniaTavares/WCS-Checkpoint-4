@@ -28,7 +28,7 @@ const login = async (req, res, next) => {
     );
     if (!match) throw new Error("INVALID_CREDENTIALS");
     else {
-      const final = { id: user.insertId, username: user.username };
+      const final = { id: user.id, username: user.username };
       const token = authHelper.generateAcessToken(final);
       res
         .status(200)

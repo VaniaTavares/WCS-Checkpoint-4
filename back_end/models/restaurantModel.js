@@ -8,11 +8,19 @@ const getAllRestaurants = async (user_id, admin = false) => {
     );
   } else {
     results = await connection.query(
-      "SELECT * FROM restaurants r JOIN users_restaurants j ON r.id=j.restaurant_id WHERE j.user_id=?;",
+      "SELECT id, restaurant_name, address, img_url, url, votes FROM restaurants r JOIN users_restaurants j ON r.id=j.restaurant_id WHERE j.user_id=?;",
       [user_id]
     );
   }
-  return [results];
+  return results[0];
+};
+
+const getRestaurantById = async (id) => {
+  let [results] = await connection.query(
+    "SELECT * FROM restaurants WHERE id=?;",
+    [id]
+  );
+  return results[0];
 };
 
 const createRestaurantEntry = async (body) => {
@@ -22,4 +30,25 @@ const createRestaurantEntry = async (body) => {
   return results;
 };
 
-module.exports = { getAllRestaurants, createRestaurantEntry };
+const crossReferenceUserRestaurant = async (user_id, restaurant_id) => {
+  let [results] = await connection.query(
+    "INSERT INTO users_restaurants SET ?;",
+    { user_id, restaurant_id }
+  );
+  return results;
+};
+
+const crossRestaurantDelete = async (user_id, restaurant_id) => {
+  let [results] = await connection.query(
+    "DELETE FROM users_restaurants WHERE user_id=? AND restaurant_id=?",
+    [user_id, restaurant_id]
+  );
+  return results;
+};
+module.exports = {
+  getAllRestaurants,
+  createRestaurantEntry,
+  getRestaurantById,
+  crossReferenceUserRestaurant,
+  crossRestaurantDelete,
+};
