@@ -1,4 +1,5 @@
 const connection = require("../config/db");
+const { userHelper } = require("../helpers");
 
 const getAllUsers = async () => {
   let [results] = await connection.query(
@@ -15,4 +16,22 @@ const getUserById = async (id) => {
   return results[0];
 };
 
-module.exports = { getAllUsers, getUserById };
+const createUser = async ({ password, ...body }) => {
+  const hashed_password = await userHelper.hashPassword(password);
+  let [results] = await connection.query("INSERT INTO users SET ?;", {
+    hashed_password,
+    ...body,
+  });
+  return results;
+};
+
+const updatePassword = async ({ password }, id) => {
+  const hashed_password = await userHelper.hashPassword(password);
+  let [results] = await connection.query(
+    "UPDATE users SET hashed_password = ? WHERE id=?;",
+    [hashed_password, id]
+  );
+  return results.affectedRows;
+};
+
+module.exports = { getAllUsers, getUserById, createUser, updatePassword };
