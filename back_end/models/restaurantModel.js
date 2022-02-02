@@ -4,11 +4,11 @@ const getAllRestaurants = async (user_id, admin = false) => {
   let results = null;
   if (admin) {
     results = await connection.query(
-      "SELECT id, restaurant_name, address, votes FROM restaurants;"
+      "SELECT id, restaurant_name, address FROM restaurants;"
     );
   } else {
     results = await connection.query(
-      "SELECT id, restaurant_name, address, img_url, url, votes FROM restaurants r JOIN users_restaurants j ON r.id=j.restaurant_id WHERE j.user_id=?;",
+      "SELECT id, restaurant_name, address, img_url, url FROM restaurants r JOIN users_restaurants j ON r.id=j.restaurant_id WHERE j.user_id=?;",
       [user_id]
     );
   }

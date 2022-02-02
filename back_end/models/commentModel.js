@@ -7,15 +7,37 @@ const createNewComment = async (body) => {
   return results;
 };
 
-const retriveRestaurantComments = async (restaurant_id) => {
+const retriveComments = async (restaurant_id, admin = false) => {
+  let results;
+  let sql = "SELECT * FROM comments ";
+  if (admin) {
+    results = await connection.query(sql);
+  } else {
+    sql += "WHERE restaurant_id=?";
+    results = await connection.query(sql, [restaurant_id]);
+  }
+  return results[0];
+};
+
+const updateComment = async ({ comment }, comment_id) => {
   let [results] = await connection.query(
-    "SELECT * FROM comments WHERE restaurant_id=?",
-    [restaurant_id]
+    "UPDATE comments SET ? WHERE comment_id=?",
+    [comment, comment_id]
+  );
+  return results;
+};
+
+const deleteComment = async (comment_id) => {
+  let [results] = await connection.query(
+    "DELETE FROM comments WHERE comment_id=?",
+    [comment, comment_id]
   );
   return results;
 };
 
 module.exports = {
   createNewComment,
-  retriveRestaurantComments,
+  retriveComments,
+  updateComment,
+  deleteComment,
 };

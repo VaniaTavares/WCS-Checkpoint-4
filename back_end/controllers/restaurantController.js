@@ -46,8 +46,20 @@ const removeUserRestaurant = async (req, res, next) => {
   }
 };
 
+const retrieveRestaurants = async (req, res, next) => {
+  try {
+    const results = await restaurantModel.getAllRestaurants(null, true);
+    if (!results) throw Error;
+    if (!results.length) throw new Error("NO_RECORD_FOUND");
+    res.status(200).json(results);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   retrieveUsersRestaurants,
   addNewRestaurant,
   removeUserRestaurant,
+  retrieveRestaurants,
 };

@@ -6,7 +6,7 @@ const app = express();
 const apiRouter = require("./routes");
 const authRouter = require("./routes/authRoutes");
 
-const { authMiddleware, errorHandling } = require("./middleware");
+const { errorHandling } = require("./middleware");
 const PORT = process.env.SERVER_PORT || 4001;
 
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 // app.use(session(sessionSettings));
 app.use("/auth", authRouter);
-app.use("/api", authMiddleware.validateToken, apiRouter);
+app.use("/api", apiRouter);
 
 app.use(errorHandling.handleError);
 
