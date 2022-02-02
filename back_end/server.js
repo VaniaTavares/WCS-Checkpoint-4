@@ -6,7 +6,7 @@ const app = express();
 const apiRouter = require("./routes");
 const authRouter = require("./routes/authRoutes");
 
-const { handleError } = require("./middleware/errorHandling");
+const { authMiddleware, errorHandling } = require("./middleware");
 const PORT = process.env.SERVER_PORT || 4001;
 
 app.use(express.json());
@@ -22,12 +22,11 @@ app.use(
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
-
 // app.use(session(sessionSettings));
 app.use("/auth", authRouter);
-app.use("/api", apiRouter);
+app.use("/api", authMiddleware.validateToken, apiRouter);
 
-app.use(handleError);
+app.use(errorHandling.handleError);
 
 app.listen(PORT, () => {
   console.log(`Server listening to port: http://localhost:${PORT}`);
