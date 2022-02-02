@@ -1,6 +1,6 @@
 const { userModel } = require("../models");
 const { cookieJWT } = require("../config/cookieSettings");
-const { authHelper } = require("../helpers");
+const { authHelper, userHelper } = require("../helpers");
 
 const registerUser = async (req, res, next) => {
   try {
@@ -18,4 +18,32 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser };
+const login = async (req, res, next) => {
+  try {
+    const user = await userModel.getUserByEmail(req.body.email);
+    if (!user) throw new Error("NO_USER");
+    const match = await userHelper.verifyPassword(
+      req.body.password,
+      user.hashed_password
+    );
+    if (!match) throw new Error("INVALID_CREDENTIALS");
+    else {
+      const final = { id: user.insertId, username: user.username };
+      const token = authHelper.generateAcessToken(final);
+      res
+        .status(200)
+        .cookie("token", token, { ...cookieJWT })
+        .json(final);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const logout = (req, res) => {
+  res
+    .clearCookie("token")
+    .status(200)
+    .json({ message: "Successfully logged out" });
+};
+module.exports = { registerUser, login, logout };

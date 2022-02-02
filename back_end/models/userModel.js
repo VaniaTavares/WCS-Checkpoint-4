@@ -16,6 +16,14 @@ const getUserById = async (id) => {
   return results[0];
 };
 
+const getUserByEmail = async (email) => {
+  const [results] = await connection.query(
+    "SELECT id, username, status, hashed_password FROM users WHERE email=?;",
+    [email]
+  );
+  return results[0];
+};
+
 const createUser = async ({ password, ...body }) => {
   const hashed_password = await userHelper.hashPassword(password);
   let [results] = await connection.query("INSERT INTO users SET ?;", {
@@ -34,4 +42,10 @@ const updatePassword = async ({ password }, id) => {
   return results.affectedRows;
 };
 
-module.exports = { getAllUsers, getUserById, createUser, updatePassword };
+module.exports = {
+  getAllUsers,
+  getUserById,
+  getUserByEmail,
+  createUser,
+  updatePassword,
+};
