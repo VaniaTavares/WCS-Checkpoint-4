@@ -1,0 +1,98 @@
+@mixin intensity($amount) {
+  background-color: mix(white, rgb(238, 181, 24), $amount);
+}
+
+.loading-container {
+  position: relative;
+  width: 70vw;
+  margin: 0 auto;
+  top: 50%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  color: transparent;
+  span {
+    width: 100%;
+    height: 20%;
+    margin: 5% 0;
+    border-radius: 1rem;
+  }
+}
+
+#upperbar {
+  @include intensity(50);
+  animation: upperBar linear;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+#firstbar {
+  @include intensity(70);
+  animation: middlebar ease;
+
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+#middlebar {
+  @include intensity(30);
+  animation: middlebar ease;
+
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+#bottombar {
+  @include intensity(10);
+  animation: bottombar ease;
+
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+@keyframes upperBar {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(35px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes middlebar {
+  0% {
+    transform: translateX(-60px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-60px);
+  }
+}
+
+@keyframes bottombar {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(40px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

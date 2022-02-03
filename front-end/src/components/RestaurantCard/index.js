@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../apiRequests";
 import { isLoggedIn } from "../ProtectedRoutes";
 
+import "./index.scss";
+
 const RestaurantCard = ({ info }) => {
   const navigate = useNavigate();
 
@@ -32,19 +34,7 @@ const RestaurantCard = ({ info }) => {
   };
 
   return (
-    <div
-      style={{
-        width: "25vw",
-        height: "35vh",
-        marginLeft: "1.2vw",
-        marginBottom: "1.5vh",
-        border: "solid black 2px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignSelf: "center",
-      }}
-    >
+    <div className="restaurant-card">
       <h1>{info.name}</h1>
       <div
         className="img-container"
@@ -64,8 +54,16 @@ const RestaurantCard = ({ info }) => {
         />
         <span>Click Me</span>
       </div>
-      <span>Rating: {info.rating}</span>&nbsp;
-      <span onClick={() => addToPersonalList()}>Add</span>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        <span>Rating: {info.rating}</span>&nbsp;
+        <span onClick={() => addToPersonalList()}>Add</span>
+      </div>
     </div>
   );
 };

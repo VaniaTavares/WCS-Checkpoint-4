@@ -1,0 +1,21 @@
+@mixin buttons($color) {
+  font-weight: 600;
+  background-color: mix(black, $color, 10);
+  color: black;
+  border-radius: 1rem;
+  width: 120%;
+  height: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 2vw;
+}
+
+$primary-colour: rgb(238, 181, 24);
+
+.button-sort-active {
+  @include buttons($primary-colour);
+}
+
+.button-sort {
+  @include buttons(transparent);
+}

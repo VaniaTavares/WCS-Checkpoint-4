@@ -1,0 +1,14 @@
+.restaurant-card {
+  width: 235px;
+  height: 250px;
+  margin-left: 1.2vw;
+  margin-bottom: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  background-color: rgb(255, 243, 211);
+  -webkit-box-shadow: 10px 10px 28px -6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 10px 10px 28px -6px rgba(0, 0, 0, 0.5);
+  box-shadow: 10px 10px 28px -6px rgba(0, 0, 0, 0.5);
+}
