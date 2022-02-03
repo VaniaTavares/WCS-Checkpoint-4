@@ -9,7 +9,8 @@ const createNewComment = async (body) => {
 
 const retriveComments = async (restaurant_id, admin = false) => {
   let results;
-  let sql = "SELECT * FROM comments ";
+  let sql =
+    "SELECT comment_id, comment, date, user_id, username FROM comments c JOIN users u ON c.user_id=u.id ";
   if (admin) {
     results = await connection.query(sql);
   } else {

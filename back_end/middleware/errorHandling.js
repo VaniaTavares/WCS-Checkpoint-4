@@ -39,9 +39,11 @@ const handleError = (err, req, res, next) => {
   if (err) {
     console.log(err);
     const treatedError = err.toString().slice(7);
-    if (treatedError === "INVALID_DATA")
-      res.status(422).json(req.validationErrors);
-    else if (options.hasOwnProperty(treatedError)) {
+    if (treatedError === "INVALID_DATA") {
+      let message = req.validationErrors;
+      message = message.map((warning) => warning.message).join(". ");
+      res.status(422).json({ message });
+    } else if (options.hasOwnProperty(treatedError)) {
       const { status, message, id } = options[treatedError];
       res.status(status).json({ id, message });
     } else

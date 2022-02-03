@@ -1,9 +1,15 @@
 const { userModel } = require("../models");
 const { cookieJWT } = require("../config/cookieSettings");
 const { authHelper, userHelper } = require("../helpers");
+const { validateUser } = require("../validation/userValition");
 
 const registerUser = async (req, res, next) => {
   try {
+    const validationErrors = validateUser(req.body);
+    if (validationErrors) {
+      req.validationErrors = validationErrors.details;
+      throw new Error("INVALID_DATA");
+    }
     delete req.body.passwordConfirmation;
     const creation = await userModel.createUser(req.body);
     if (!creation.affectedRows) throw Error;

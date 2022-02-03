@@ -56,8 +56,3 @@ CREATE TABLE users_restaurants (
     FOREIGN KEY (`restaurant_id`)
     REFERENCES `restaurants` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
-    
-    INSERT INTO users_restaurants(user_id, restaurant_id) VALUES (1, "E8RJkjfdcwgtyoPMjQ_Olg");
-    SELECT * FROM users_restaurants;
-    UPDATE users_restaurants SET votes=true WHERE restaurant_id="2E8RJkjfdcwgtyoPMjQ_Olg";
-SET FOREIGN_KEY_CHECKS=1;

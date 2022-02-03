@@ -1,4 +1,5 @@
 const { commentModel } = require("../models");
+const { validateComment } = require("../validation/userValition");
 
 const getRestaurantComments = async (req, res, next) => {
   try {
@@ -20,6 +21,11 @@ const getRestaurantComments = async (req, res, next) => {
 
 const addNewComment = async (req, res, next) => {
   try {
+    const validationErrors = validateComment(req.body);
+    if (validationErrors) {
+      req.validationErrors = validationErrors.details;
+      throw new Error("INVALID_DATA");
+    }
     const creation = await commentModel.createNewComment({
       user_id: req.user_id,
       restaurant_id: req.params.restaurantId,
