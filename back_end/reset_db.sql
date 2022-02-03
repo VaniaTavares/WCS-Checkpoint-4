@@ -21,7 +21,7 @@ CREATE TABLE restaurants(
 `restaurant_name` VARCHAR(100) NOT NULL,
 `address` VARCHAR(255) NOT NULL,
 `img_url` VARCHAR(255) NOT NULL,
-`votes` INT NOT NULL DEFAULT 0
+`url` VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
 
 DROP TABLE IF EXISTS comments;
@@ -46,6 +46,7 @@ DROP TABLE IF EXISTS users_restaurants;
 CREATE TABLE users_restaurants (
   `user_id` INT NOT NULL,
   `restaurant_id` VARCHAR(255) NOT NULL,
+  `votes` BOOLEAN NOT NULL DEFAULT FALSE,
   CONSTRAINT `f_user_index`
     FOREIGN KEY (`user_id`)
     REFERENCES `users` (`id`)
@@ -56,3 +57,7 @@ CREATE TABLE users_restaurants (
     REFERENCES `restaurants` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
     
+    INSERT INTO users_restaurants(user_id, restaurant_id) VALUES (1, "E8RJkjfdcwgtyoPMjQ_Olg");
+    SELECT * FROM users_restaurants;
+    UPDATE users_restaurants SET votes=true WHERE restaurant_id="2E8RJkjfdcwgtyoPMjQ_Olg";
+SET FOREIGN_KEY_CHECKS=1;

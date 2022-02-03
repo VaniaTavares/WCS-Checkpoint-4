@@ -32,4 +32,8 @@ restaurantRouter.use("/:restaurantId/votes", voteRouter);
 
 voteRouter.get("/", voteController.getRestaurantVotes);
 
+voteRouter.patch("/upvote", voteController.upvote);
+
+voteRouter.patch("/downvote", voteController.downvote);
+
 module.exports = restaurantRouter;
