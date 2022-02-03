@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../apiRequests";
 import Cookies from "universal-cookie";
+import { axiosInstance } from "../../apiRequests";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,6 +22,15 @@ const Header = () => {
     }
   };
 
+  const goToMyPage = async () => {
+    try {
+      const results = await axiosInstance.get("/restaurants");
+      console.log(results);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <div
       style={{
@@ -36,6 +46,15 @@ const Header = () => {
       <span style={{ fontSize: "1.5rem", fontWeight: "700" }}>
         {isLoggedIn ? `Hello ${isLoggedIn}` : " "}
       </span>
+      &nbsp;
+      {isLoggedIn && (
+        <span
+          onClick={() => goToMyPage()}
+          style={{ fontSize: "1.5rem", fontWeight: "700" }}
+        >
+          My page
+        </span>
+      )}
       &nbsp;
       <span
         onClick={() => handleClick()}

@@ -1,0 +1,544 @@
+{
+	"info": {
+		"_postman_id": "64a7b9d0-add3-41e8-aee0-c9e6b7c40c28",
+		"name": "Restaurant Wishlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Acess",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"angie09\",\r\n    \"email\": \"angie09@email.com\",\r\n    \"password\": \"fishmemory3\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"angie00@email.com\",\r\n    \"password\": \"fishmemory5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Access",
+			"item": [
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Actions",
+			"item": [
+				{
+					"name": "Restaurant Requests",
+					"item": [
+						{
+							"name": "Post Restaurants",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"2E8RJkjfdcwgtyoPMjQ_Olg\",\r\n    \"restaurant_name\": \"Four Barrel Coffee\",\r\n    \"address\": \"375 Valencia St 94103 CA\",\r\n    \"img_url\": \"http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg\",\r\n    \"url\": \"https://www.yelp.com/biz/four-barrel-coffee-san-francisco\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Restaurants",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"E8RJkjfdcwgtyoPMjQ_Olg\",\r\n    \"restaurant_name\": \"Four Barrel Coffee\",\r\n    \"address\": \"375 Valencia St 94103 CA\",\r\n    \"img_url\": \"http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg\",\r\n    \"url\": \"https://www.yelp.com/biz/four-barrel-coffee-san-francisco\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Restaurant",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/restaurants/:restaurantId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"restaurants",
+										":restaurantId"
+									],
+									"variable": [
+										{
+											"key": "restaurantId",
+											"value": "E8RJkjfdcwgtyoPMjQ_Olg22"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Rating/Review Requests",
+					"item": [
+						{
+							"name": "Comments",
+							"item": [
+								{
+									"name": "Get Restaurants Comments",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/comments",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "E8RJkjfdcwgtyoPMjQ_Olg"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post New Comment",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"comment\": \"I loved the restaurant, but it is too far from my house!\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/comments",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "E8RJkjfdcwgtyoPMjQ_Olg"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Edit Comment",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"comment\": \"I loved the restaurant, but it's too expensive!\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/comments/:commentId",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"comments",
+												":commentId"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "E8RJkjfdcwgtyoPMjQ_Olg"
+												},
+												{
+													"key": "commentId",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Comment",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/comments/:commentId",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"comments",
+												":commentId"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "E8RJkjfdcwgtyoPMjQ_Olg"
+												},
+												{
+													"key": "commentId",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Votes",
+							"item": [
+								{
+									"name": "Get Restaurants Votes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/votes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"votes"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "1E8RJkjfdcwgtyoPMjQ_Olg"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Upvote Restaurant",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/votes/upvote",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"votes",
+												"upvote"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "1E8RJkjfdcwgtyoPMjQ_Olg"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Restaurant's Vote",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/api/restaurants/:restaurantId/votes/downvote",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"api",
+												"restaurants",
+												":restaurantId",
+												"votes",
+												"downvote"
+											],
+											"variable": [
+												{
+													"key": "restaurantId",
+													"value": "1E8RJkjfdcwgtyoPMjQ_Olg"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"angie00@email.com\",\r\n    \"password\": \"fishmemory5\",\r\n    \"passwordConfirmation\": \"fishmemory5\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
