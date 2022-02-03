@@ -10,13 +10,13 @@ const registerUser = async (req, res, next) => {
       req.validationErrors = validationErrors.details;
       throw new Error("INVALID_DATA");
     }
-    delete req.body.passwordConfirmation;
     const creation = await userModel.createUser(req.body);
     if (!creation.affectedRows) throw Error;
     const final = { id: creation.insertId, username: req.body.username };
     const token = authHelper.generateAcessToken(final);
     res
       .status(201)
+      .cookie("loggedIn", req.body.username)
       .cookie("token", token, { ...cookieJWT })
       .json(final);
   } catch (err) {

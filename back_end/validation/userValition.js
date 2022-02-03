@@ -20,11 +20,6 @@ const validateUser = (data) => {
           "Only letters, numbers and special characters @, &, !, ?, ., -, *, #, $, %, _ allowed for the password.",
       })
       .required(),
-    passwordConfirmation: Joi.string()
-      .valid(Joi.ref("password"))
-      .required()
-      .strict()
-      .messages({ "any.only": "Must match with password input." }),
   }).validate(data, { abortEarly: false }).error;
 };
 

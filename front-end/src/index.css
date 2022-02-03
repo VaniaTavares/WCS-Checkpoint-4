@@ -7,6 +7,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background: rgb(255, 243, 210);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 243, 210, 1) 0%,
+    rgba(252, 185, 0, 0.7235936610972514) 96%
+  );
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

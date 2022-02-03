@@ -10,8 +10,6 @@ const sortByOptions = {
   "Most Reviewed": "review_count",
 };
 
-console.log(Object.keys(sortByOptions));
-
 const LandingPage = () => {
   const [businesses, setBusinesses] = useState([]);
   const [sortBy, setSortBy] = useState("best_match");
@@ -20,7 +18,7 @@ const LandingPage = () => {
     setLoading(true);
     try {
       const results = await axiosYelp.get(
-        `/search?location=${location}&sort_by=${sort}`
+        `/search?location=${location}&sort_by=${sort}&order=dsc`
       );
 
       setBusinesses(results.data.businesses);
@@ -36,7 +34,6 @@ const LandingPage = () => {
 
   return (
     <>
-      <h1>Hello there!</h1>
       <div
         style={{
           display: "flex",

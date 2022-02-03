@@ -1,0 +1,49 @@
+.form {
+  width: clamp(200px, 80vw, 500px);
+  background-color: rgb(238, 181, 24);
+  height: max-content;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  top: 10vh;
+  label {
+    margin-bottom: 1vh;
+  }
+  h1 {
+    display: block;
+  }
+  a {
+    padding: 1vh 0.5vw;
+    position: relative;
+    right: -12vw;
+    text-decoration: none;
+    color: purple;
+    &:hover {
+      background-color: mix(white, purple, 50);
+    }
+    &:active {
+      background-color: mix(white, purple, 50);
+    }
+  }
+  #submit {
+    margin-bottom: 2vh;
+    bottom: 1vh;
+  }
+  #checkbox {
+    width: max-content;
+    margin-left: 2vw;
+  }
+  input {
+    width: 90%;
+    margin: 5% 0;
+  }
+
+  label {
+    font-size: 1.5rem;
+    padding-right: 2vw;
+  }
+}
