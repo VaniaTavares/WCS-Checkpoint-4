@@ -1,9 +1,7 @@
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const RestaurantDetails = ({ info }) => {
-  const params = useParams();
-  console.log(params);
   const navigate = useNavigate();
   return (
     <div style={{ marginLeft: "2vw" }}>

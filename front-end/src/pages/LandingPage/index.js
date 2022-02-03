@@ -31,12 +31,14 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="App">
+    <>
       <h1>Hello there!</h1>
-      {businesses.map((business) => (
-        <RestaurantCard info={business} key={business.id} />
-      ))}
-    </div>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {businesses.map((business) => (
+          <RestaurantCard info={business} key={business.id} />
+        ))}
+      </div>
+    </>
   );
 };
 
