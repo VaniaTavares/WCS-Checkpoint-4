@@ -8,7 +8,11 @@ const sortByOptions = {
   "Most Reviewed": "review_count",
 };
 
-console.log(process.env.REACT_APP_YELP_API);
+console.log(
+  process.env.REACT_APP_API_YELP,
+  process.env.REACT_APP_SERVER_API_AUTH,
+  process.env.REACT_APP_SERVER_API
+);
 
 const App = () => {
   const yelp = async (
