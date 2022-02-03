@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../ProtectedRoutes";
 import { axiosAuth } from "../../apiRequests";
+import Cookies from "universal-cookie";
 
 const Header = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const isLoggedIn = cookies.get("loggedIn");
 
   const handleClick = async () => {
     if (isLoggedIn) {

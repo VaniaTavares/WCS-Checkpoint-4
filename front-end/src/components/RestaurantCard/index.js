@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../apiRequests";
-import { isLoggedIn } from "../ProtectedRoutes";
+import Cookies from "universal-cookie";
 
 import "./index.scss";
-
 const RestaurantCard = ({ info }) => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const isLoggedIn = cookies.get("loggedIn");
 
   const goToDetails = (restaurantId) => {
     return navigate(`/restaurant/${restaurantId}/details`, { state: info });

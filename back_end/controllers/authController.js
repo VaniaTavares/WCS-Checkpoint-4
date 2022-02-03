@@ -38,6 +38,7 @@ const login = async (req, res, next) => {
       const token = authHelper.generateAcessToken(final);
       res
         .status(200)
+        .cookie("loggedIn", user.username)
         .cookie("token", token, { ...cookieJWT })
         .json(final);
     }
