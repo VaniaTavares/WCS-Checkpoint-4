@@ -2,9 +2,16 @@ const { commentModel } = require("../models");
 
 const getRestaurantComments = async (req, res, next) => {
   try {
-    const results = await commentModel.retriveComments(req.params.restaurantId);
+    let results = await commentModel.retriveComments(req.params.restaurantId);
     if (!results) throw Error;
     if (!results.length) throw new Error("NO_RECORD_FOUND");
+    if (req.cookies.token) {
+      results = results.map((comment) => {
+        const newContent = { ...comment };
+        if (newContent.user_id === req.user_id) newContent.editable = true;
+        return newContent;
+      });
+    }
     res.status(200).json(results);
   } catch (err) {
     next(err);
